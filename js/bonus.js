@@ -1,48 +1,48 @@
-var list = ['Bianchi', 'Rossi', 'Duzioni', 'Balsano', 'Verdi'];
+// FUNZIONA! MA SOLO CON LE STRINGHE (CHE COMUNQUE ERA LA CONSEGNA)
 
-// QUESTO NON FUNZIONERA' CON PIU' ELEMENTI , HO PROVATO A
-// TROVARE UNA SOLUZIONE ALL'ALGORITMO SENZA GUARDARE NESSUNA FORMULA NE NIENTE
-// E HO INTENZIONE DI CONTINUARE A PROVARCI PER UNA QUESTIONE MIA PERSONALE MA 
-// RITENETELO PURE UN BONUS NON COMPLETATO IN QUESTO MOMENTO
-// MAGARI DOMANI DA PIU LUCIDO RIPROVO
+var list = ['Bianchi', 'Rossi', 'Duzioni', 'Zzarro', 'Aire', 'Balsano', 'Verdi' , 'Anna' , 'Gigi', 'Zattoni' , 'zola'];
 
-function isMin(data, list) {
-    let bool = list.includes(data);
-    if (bool) {
-        let counter = 1;
-        for (let index = 0; index < list.length; index++) {
-            if (counter == list.length) {
-                return true;
-            } else if (counter < list.length && index == list.length - 1) {
-                return false;
-            }
-            if (data < list[index]) {
-                ++counter;
-            } else if (data == list[index]) {
-                ++counter;
-            } else {
-                return false;
-            }
+function isMin(data,list){
+    if(list.length == 2) {
+        if (data == list[0]) {
+            return data < list[1];
+        } else {
+            return data < list[0];
         }
+    }
+    let counter = 0;
+    let copy = 0;
+    for(let i = 0; i < list.length; i++) {
+        if(counter == list.length - 1) {
+            return true;
+        }
+        if (data < list[i]){
+            counter++;
+        } else if (data == list[i]) {
+            copy++;
+        }
+    }
+    if(counter + copy == list.length) {
+        return true;
     } else {
-        return 'string is not contained.';
+        return false;
     }
 }
 
 function mySort(list) {
-    var total = list.length;
-    var sorted = [];
-    for (let j = 0; j < total; j++) {
-        for (let index = 0; index < list.length; index++) {
-            let check = isMin(list[index], list);
-            if(check) {
-                sorted.push(list[index]);
-                list.splice(index, 1);
-            }
+    let sorted = [];
+    let total = list.length;
+    for (let i = 0; i < total; i++) {
+        for(let j = 0; j < list.length; j++){ 
+            if(isMin(list[j], list)){
+            sorted.push(list[j]);
+            list.splice(j,1);
         }
-    }
 
-    return sorted;
+   }
+
+    }
+ return sorted;
 }
 
 console.log(mySort(list));
