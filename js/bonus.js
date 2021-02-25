@@ -1,6 +1,6 @@
-// FUNZIONA! MA SOLO CON LE STRINGHE (CHE COMUNQUE ERA LA CONSEGNA)
+// FUNZIONA
 
-var list = ['Bianchi', 'Rossi', 'Duzioni', 'Zzarro', 'Aire', 'Balsano', 'Verdi' , 'Anna' , 'Gigi', 'Zattoni' , 'zola'];
+var list = [1 , '!', '@','Aaa','Bianchi', 'Rossi', 'Duzioni', 'Zzarro', 'Aire', 'Balsano', 'Verdi' , 'Anna' , 'Gigi', 'Zattoni' , 'Cola'];
 
 function isMin(data,list){
     if(list.length == 2) {
@@ -34,6 +34,7 @@ function mySort(list) {
     let total = list.length;
     for (let i = 0; i < total; i++) {
         for(let j = 0; j < list.length; j++){ 
+            list[j] = list[j].toString();
             if(isMin(list[j], list)){
             sorted.push(list[j]);
             list.splice(j,1);
